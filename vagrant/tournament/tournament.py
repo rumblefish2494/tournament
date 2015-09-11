@@ -10,7 +10,6 @@ def connect():
     """Connect to the PostgreSQL database.  Returns a database connection."""
     return psycopg2.connect("dbname=tournament")
 
-
 def deleteMatches():
     """Remove all the match records from the database."""
     pg = connect()
@@ -19,9 +18,6 @@ def deleteMatches():
     c.execute("update players set matches = 0;")
     pg.commit()
     pg.close()
-
-
-
 
 def deletePlayers():
     """Remove all the player records from the database."""
@@ -80,8 +76,6 @@ def playerStandings():
     pg.close()
     return standings
 
-
-
 def reportMatch(winner, loser):
     """Records the outcome of a single match between two players.
        winner:  the id number of the player who won
@@ -95,8 +89,6 @@ def reportMatch(winner, loser):
     c.execute("update players set wins = wins + 1 where id = (%s);", [winner])
     pg.commit()
     pg.close()
-
-
 
 def swissPairings():
     """pairs registered players based on wins in a swiss pairing style match
